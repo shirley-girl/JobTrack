@@ -9,6 +9,9 @@ env
 
 # Environment variables and secrets
 .env
+.env.*
+!.env.example
+
 
 
 # Django files
