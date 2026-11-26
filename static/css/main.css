@@ -1,0 +1,162 @@
+/* =========================================
+   JOBTRACK COLOUR SYSTEM
+========================================= */
+
+:root {
+    --bs-primary: #1D3557;
+    --bs-primary-rgb: 29, 53, 87;
+    --bs-secondary: #475569;
+    --bs-secondary-rgb: 71, 85, 105;
+    --bs-body-bg: #F1FAEE;
+    --bs-body-color: #1D3557;
+    --bs-border-color: #E2E8F0;
+    --jt-navy: #1D3557;
+    --jt-navy-hover: #142840;
+    --jt-apricot: #F4A261;
+    --jt-apricot-hover: #E89045;
+    --jt-background: #F1FAEE;
+    --jt-surface: #FFFFFF;
+}
+
+
+/* =========================================
+   JOBTRACK BUTTON VARIANTS
+========================================= */
+
+
+/* Primary action: Apricot */
+
+.btn-primary {
+    --bs-btn-color: var(--jt-navy);
+    --bs-btn-bg: var(--jt-apricot);
+    --bs-btn-border-color: var(--jt-apricot);
+    --bs-btn-hover-color: var(--jt-navy);
+    --bs-btn-hover-bg: var(--jt-apricot-hover);
+    --bs-btn-hover-border-color: var(--jt-apricot-hover);
+    --bs-btn-active-color: var(--jt-navy);
+    --bs-btn-active-bg: var(--jt-apricot-hover);
+    --bs-btn-active-border-color: var(--jt-apricot-hover);
+    --bs-btn-focus-shadow-rgb: 244, 162, 97;
+}
+
+
+/* Secondary action: Navy */
+
+.btn-secondary {
+    --bs-btn-color: #FFFFFF;
+    --bs-btn-bg: var(--jt-navy);
+    --bs-btn-border-color: var(--jt-navy);
+    --bs-btn-hover-color: #FFFFFF;
+    --bs-btn-hover-bg: var(--jt-navy-hover);
+    --bs-btn-hover-border-color: var(--jt-navy-hover);
+}
+
+
+/* Global theme */
+
+body {
+    background-color: var(--jt-background);
+    color: var(--jt-navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+
+/* Brand icon */
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--jt-navy);
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+
+/* User avatar */
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FCE8D5;
+    color: var(--jt-navy);
+    border-radius: 50%;
+    font-weight: 600;
+}
+
+
+/* Authentication card */
+
+.auth-card {
+    border-radius: 16px;
+}
+
+.auth-icon {
+    width: 64px;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FCE8D5;
+    color: var(--jt-navy);
+    border-radius: 16px;
+    font-size: 1.7rem;
+}
+
+
+/* Footer */
+
+.footer {
+    border-top: 3px solid var(--jt-apricot);
+}
+
+.footer a:hover {
+    color: var(--jt-apricot) !important;
+}
+
+.auth-card {
+    background-color: var(--jt-surface);
+    border-radius: 16px;
+}
+
+
+/* Application Cards */
+
+.application-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-3px);
+}
+
+
+/* Application Pagination */
+
+.pagination {
+    --bs-pagination-color: var(--jt-navy);
+    --bs-pagination-hover-color: var(--jt-navy);
+    --bs-pagination-hover-bg: var(--jt-background);
+    --bs-pagination-active-bg: var(--jt-navy);
+    --bs-pagination-active-border-color: var(--jt-navy);
+    --bs-pagination-border-color: var(--bs-border-color);
+}
+
+
+/* Application Filter Card */
+
+.application-card,
+.application-filter-card {
+    border-radius: 1rem;
+}
