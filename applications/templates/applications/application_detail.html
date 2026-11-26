@@ -1,0 +1,356 @@
+ {% extends 'main.html' %} {% load application_tags %} {% block title %}{{ application.job_title }} | JobTrack{% endblock %} {% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-lg-9">
+
+            <!-- Back Link -->
+            <div class="mb-4">
+
+                <a href="{% url 'application_list' %}" class="text-secondary text-decoration-none small">
+
+                    <i class="bi bi-arrow-left me-1"></i> Back to applications
+
+                </a>
+
+            </div>
+
+
+            <!-- Application Header -->
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+
+                        <div>
+
+                            <h1 class="h3 fw-bold text-primary mb-2">
+                                {{ application.job_title }}
+                            </h1>
+
+                            <h5 class="text-secondary mb-2">
+                                {{ application.company_name }}
+                            </h5>
+
+                            {% if application.location %}
+                            <p class="text-secondary mb-0">
+                                <i class="bi bi-geo-alt me-1"></i> {{ application.location }}
+                            </p>
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Status -->
+                        <div>
+
+                            <span class="badge bg-primary-subtle text-primary fs-6">
+
+                                {{ application.get_status_display }}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+
+                        <a href="{% url 'application_update' application.pk %}" class="btn btn-primary">
+
+                            <i class="bi bi-pencil me-1"></i> Edit
+
+                        </a>
+
+                        <a href="{% url 'application_delete' application.pk %}" class="btn btn-outline-danger">
+
+                            <i class="bi bi-trash me-1"></i> Delete
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Job Information -->
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold text-primary mb-4">
+                        Job Information
+                    </h5>
+
+                    <div class="row g-4">
+
+                        <div class="col-12 col-md-6">
+
+                            <p class="text-secondary small mb-1">
+                                Employment Type
+                            </p>
+
+                            <p class="fw-semibold mb-0">
+                                {{ application.get_employment_type_display|default:"Not specified" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="col-12 col-md-6">
+
+                            <p class="text-secondary small mb-1">
+                                Job Source
+                            </p>
+
+                            <p class="fw-semibold mb-0">
+                                {{ application.job_source|default:"Not specified" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="col-12 col-md-6">
+
+                            <p class="text-secondary small mb-1">
+                                Salary
+                            </p>
+
+                            <p class="fw-semibold mb-0">
+                                {{ application.salary|default:"Not specified" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="col-12 col-md-6">
+
+                            <p class="text-secondary small mb-1">
+                                Date Applied
+                            </p>
+
+                            <p class="fw-semibold mb-0">
+                                {{ application.date_applied|date:"M d, Y"|default:"Not specified" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="col-12 col-md-6">
+
+                            <p class="text-secondary small mb-1">
+                                Application Deadline
+                            </p>
+
+                            <p class="fw-semibold mb-0">
+                                {{ application.deadline|date:"M d, Y"|default:"Not specified" }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="col-12 col-md-6">
+
+                            <p class="text-secondary small mb-1">
+                                Date Added
+                            </p>
+
+                            <p class="fw-semibold mb-0">
+                                {{ application.created_at|date:"M d, Y" }}
+                            </p>
+
+                        </div>
+
+
+                        {% if application.job_url %}
+
+                        <div class="col-12">
+
+                            <p class="text-secondary small mb-1">
+                                Job Listing
+                            </p>
+
+                            <a href="{{ application.job_url }}" target="_blank" rel="noopener noreferrer">
+
+                                    View Original Job Listing
+                                    <i class="bi bi-box-arrow-up-right ms-1"></i>
+
+                                </a>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Job Image -->
+            {% if application.job_image %}
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold text-primary mb-3">
+                        Attached Image
+                    </h5>
+
+                    <img src="{{ application.job_image.url }}" alt="Job application attachment" class="img-fluid rounded">
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- Description -->
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold text-primary mb-3">
+                        Job Description
+                    </h5>
+
+                    {% if application.description %}
+
+                    <div class="text-secondary">
+                        {{ application.description|linebreaks }}
+                    </div>
+
+                    {% else %}
+
+                    <p class="text-secondary mb-0">
+                        No job description has been added.
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- Personal Notes -->
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold text-primary mb-3">
+                        My Notes
+                    </h5>
+
+                    {% if application.notes %}
+
+                    <div class="text-secondary">
+                        {{ application.notes|linebreaks }}
+                    </div>
+
+                    {% else %}
+
+                    <p class="text-secondary mb-0">
+                        No notes added yet.
+                    </p>
+
+                    <a href="{% url 'application_update' application.pk %}" class="btn btn-outline-secondary btn-sm mt-3">
+
+                            Add Notes
+
+                        </a> {% endif %}
+
+                </div>
+
+            </div>
+            <!-- Application Status Timeline -->
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="bi bi-clock-history text-primary fs-4 me-2"></i>
+                        <h4 class="fw-bold mb-0">Application Timeline</h4>
+                    </div>
+
+                    {% if history %}
+
+                    <div class="timeline">
+
+                        {% for entry in history %}
+
+                        <div class="d-flex gap-3 mb-4">
+
+                            <!-- Timeline Icon -->
+                            <div>
+                                <span class="timeline-icon">
+                                <i class="bi bi-circle-fill"></i>
+                            </span>
+                            </div>
+
+                            <!-- Timeline Content -->
+                            <div class="flex-grow-1">
+
+                                <h6 class="fw-bold mb-1">
+                                    {% if entry.old_status %} {{ status_labels|get_item:entry.old_status }}
+                                    <i class="bi bi-arrow-right mx-1"></i> {% endif %} {{ status_labels|get_item:entry.new_status }}
+                                </h6>
+
+                                <p class="text-secondary small mb-1">
+                                    {{ entry.changed_at|date:"M d, Y - h:i A" }}
+                                </p>
+
+                                {% if entry.notes %}
+                                <p class="text-secondary small mb-0">
+                                    {{ entry.notes }}
+                                </p>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% else %}
+
+                    <p class="text-secondary mb-0">
+                        No status history available yet.
+                    </p>
+
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <!-- Timestamps -->
+            <div class="text-secondary small">
+
+                <p class="mb-1">
+                    Created: {{ application.created_at|date:"M d, Y H:i" }}
+                </p>
+
+                <p class="mb-0">
+                    Last updated: {{ application.updated_at|date:"M d, Y H:i" }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
